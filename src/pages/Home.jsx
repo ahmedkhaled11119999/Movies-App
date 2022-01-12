@@ -1,33 +1,39 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import MovieCard from "../components/MovieCard";
-
+import { fetchMovies } from "../actions/";
 const Home = () => {
-  const [movies, setMovies] = useState([]);
+  const movies = useSelector((state) => state.fetchData);
   const params = useParams();
+  const dispatch = useDispatch();
+  const history = useHistory();
   let [pageNumber, setPageNumber] = useState(params.num);
+
   useEffect(() => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=a0217716901568c9c94486471cacad13&page=${pageNumber}`
-      )
-      .then((res) => {
-        setMovies(res.data.results);
-      })
-      .catch((err) => console.log(err));
+    dispatch(fetchMovies(pageNumber));
+    window.scrollTo(0, 0);
   }, [pageNumber]);
 
-  const nextPage = () => {
-    pageNumber = parseInt(pageNumber) + 1;
-    setPageNumber(pageNumber);
+  const firstPage = () => {
+    setPageNumber(1);
+    history.push("/movies/1");
   };
+
   const prevPage = () => {
     if (pageNumber > 1) {
       pageNumber = parseInt(pageNumber) - 1;
       setPageNumber(pageNumber);
+      history.push(`/movies/${pageNumber}`);
     }
   };
+
+  const nextPage = () => {
+    pageNumber = parseInt(pageNumber) + 1;
+    setPageNumber(pageNumber);
+    history.push(`/movies/${pageNumber}`);
+  };
+  console.log(movies);
   return (
     <div className="container">
       <div className="row">
@@ -36,27 +42,15 @@ const Home = () => {
         })}
       </div>
       <div className="d-flex justify-content-center my-4">
-        <Link
-          className="btn btn-danger"
-          to={"/movies/1"}
-          onClick={() => window.location.reload()}
-        >
+        <button className="btn btn-danger" onClick={() => firstPage()}>
           First Page
-        </Link>
-        <Link
-          to={`/movies/${pageNumber}`}
-          onClick={prevPage}
-          className="btn btn-dark mx-3"
-        >
+        </button>
+        <button onClick={() => prevPage()} className="btn btn-dark mx-3">
           &#8592; Previous
-        </Link>
-        <Link
-          className="btn btn-dark"
-          to={`/movies/${pageNumber}`}
-          onClick={nextPage}
-        >
+        </button>
+        <button className="btn btn-dark" onClick={() => nextPage()}>
           Next &#8594;
-        </Link>
+        </button>
       </div>
     </div>
   );

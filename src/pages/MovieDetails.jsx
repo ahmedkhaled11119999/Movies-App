@@ -1,17 +1,17 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { axiosMovies } from "../apis/moviesApi";
 
 const MovieDetails = () => {
   const param = useParams();
   const [movieDetails, setMovieDetails] = useState({});
-  useEffect(() => {
-    axios
+  useEffect(async () => {
+    const response = await axiosMovies
       .get(
         `https://api.themoviedb.org/3/movie/${param.id}?api_key=a0217716901568c9c94486471cacad13`
       )
-      .then((res) => setMovieDetails(res.data))
       .catch((err) => console.log(err));
+    setMovieDetails(response.data);
   }, []);
 
   return (
