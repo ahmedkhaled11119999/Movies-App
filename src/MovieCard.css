@@ -1,0 +1,30 @@
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.starStyling {
+  color: yellow;
+  cursor: pointer;
+  display: block;
+  font-size: 40px;
+  margin: 0 auto;
+}
+.starContainer {
+  position: absolute;
+  top: -2.5%;
+  left: 43%;
+  background-color: white;
+  border-radius: 25%;
+  border-top: 4px black solid;
+  width: 50px;
+  height: 50px;
+}
+
+.cardStyling {
+  width: 18rem;
+  margin: 3rem 0;
+  position: relative;
+}
