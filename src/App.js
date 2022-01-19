@@ -6,18 +6,26 @@ import Favourites from "./pages/Favourites";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import MovieDetails from "./pages/MovieDetails";
+import { languageContext } from "./contexts/langContext";
+import { useState } from "react";
 
 function App() {
+  const [lang, setLang] = useState("en");
+
   return (
     <Router>
-      <Navbar />
-      <Switch>
-        <Route path={"/movies/:num"} component={Home} exact />
-        <Route path={"/favourites"} component={Favourites} exact />
-        <Route path={"/login"} component={Login} exact />
-        <Route path={"/register"} component={Register} exact />
-        <Route path={"/:id/movie_details"} component={MovieDetails} exact />
-      </Switch>
+      <languageContext.Provider value={{ lang, setLang }}>
+        <div dir={lang === "en" ? "ltr" : "rtl"}>
+          <Navbar />
+          <Switch>
+            <Route path={"/movies/:num"} component={Home} exact />
+            <Route path={"/favourites"} component={Favourites} exact />
+            <Route path={"/login"} component={Login} exact />
+            <Route path={"/register"} component={Register} exact />
+            <Route path={"/:id/movie_details"} component={MovieDetails} exact />
+          </Switch>
+        </div>
+      </languageContext.Provider>
     </Router>
   );
 }

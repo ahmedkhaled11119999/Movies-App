@@ -1,19 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import MovieCard from "../components/MovieCard";
 import { fetchMovies } from "../actions/";
+import { languageContext } from "../contexts/langContext";
+
 const Home = () => {
   const movies = useSelector((state) => state.fetchData);
   const params = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
+  const { lang } = useContext(languageContext);
+
   let [pageNumber, setPageNumber] = useState(params.num);
 
   useEffect(() => {
-    dispatch(fetchMovies(pageNumber));
+    dispatch(fetchMovies(pageNumber, lang));
     window.scrollTo(0, 0);
-  }, [pageNumber]);
+  }, [pageNumber, lang]);
 
   const firstPage = () => {
     setPageNumber(1);
@@ -33,7 +37,6 @@ const Home = () => {
     setPageNumber(pageNumber);
     history.push(`/movies/${pageNumber}`);
   };
-  console.log(movies);
   return (
     <div className="container">
       <div className="row">

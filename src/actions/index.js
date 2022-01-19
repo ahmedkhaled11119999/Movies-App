@@ -12,11 +12,11 @@ export const decrementFavs = (movie) => {
     payload: movie,
   };
 };
-export const fetchMovies = (pageNumber) => {
+export const fetchMovies = (pageNumber, lang) => {
   return async (dispatch) => {
     const response = await axiosMovies
       .get(
-        `/popular?api_key=a0217716901568c9c94486471cacad13&page=${pageNumber}`
+        `/popular?api_key=a0217716901568c9c94486471cacad13&page=${pageNumber}&language=${lang}`
       )
       .catch((err) => console.log(err));
     dispatch({
