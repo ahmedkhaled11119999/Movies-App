@@ -4,4 +4,5 @@ export const ar = {
   login: "تسجيل الدخول",
   register: "التسجيل",
   app_name: "تطبيق الافلام",
+  search: "البحث",
 };

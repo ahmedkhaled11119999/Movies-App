@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import MovieDetails from "./pages/MovieDetails";
 import { languageContext } from "./contexts/langContext";
 import { useState } from "react";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   const [lang, setLang] = useState("en");
@@ -20,6 +21,7 @@ function App() {
           <Switch>
             <Route path={"/movies/:num"} component={Home} exact />
             <Route path={"/favourites"} component={Favourites} exact />
+            <Route path={"/search/:queryString"} component={SearchPage} exact />
             <Route path={"/login"} component={Login} exact />
             <Route path={"/register"} component={Register} exact />
             <Route path={"/:id/movie_details"} component={MovieDetails} exact />

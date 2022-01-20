@@ -3,6 +3,9 @@ const fetchData = (state = [], action) => {
     case "FETCH_MOVIES":
       state = action.payload;
       return state;
+    case "SEARCH_MOVIES":
+      state = action.payload;
+      return state;
     default:
       return state;
   }

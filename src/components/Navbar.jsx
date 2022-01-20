@@ -4,10 +4,13 @@ import { useContext } from "react";
 import { languageContext } from "../contexts/langContext";
 import { en } from "../translation/en";
 import { ar } from "../translation/ar";
+import { useHistory } from "react-router-dom";
+import { Formik, Form, Field } from "formik";
 
 const Navbar = () => {
   const favCount = useSelector((state) => state.favArr);
   let { lang, setLang } = useContext(languageContext);
+  const history = useHistory();
   let navBarDirection = () => (lang === "en" ? "ms-auto" : "me-auto");
   return (
     <nav className="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
@@ -60,6 +63,32 @@ const Navbar = () => {
               <Link className="nav-link" to={"/register"}>
                 {lang === "en" ? en.register : ar.register}
               </Link>
+            </li>
+            <li>
+              <Formik
+                initialValues={{
+                  search: "",
+                }}
+                onSubmit={(values) => history.push(`/search/${values.search}`)}
+              >
+                {(formik) => (
+                  <Form>
+                    <Field
+                      className="form-control mx-3"
+                      style={{ display: "inline-block", width: "auto" }}
+                      name="search"
+                      type="text"
+                    />
+                    <button
+                      className="btn btn-danger"
+                      name="submit"
+                      type="submit"
+                    >
+                      {lang === "en" ? en.search : ar.search}
+                    </button>
+                  </Form>
+                )}
+              </Formik>
             </li>
           </ul>
         </div>

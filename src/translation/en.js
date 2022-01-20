@@ -4,4 +4,5 @@ export const en = {
   login: "Login",
   register: "Register",
   app_name: "Movies App",
+  search: "Search",
 };
