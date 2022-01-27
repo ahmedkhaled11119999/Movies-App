@@ -13,7 +13,7 @@ const SearchPage = () => {
   const queryString = params.queryString;
   useEffect(() => {
     dispatch(fetchSearchResults(lang, queryString));
-  }, [queryString]);
+  }, [lang, queryString]);
 
   return (
     <div className="container">
