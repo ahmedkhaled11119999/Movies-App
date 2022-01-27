@@ -19,6 +19,7 @@ function App() {
         <div dir={lang === "en" ? "ltr" : "rtl"}>
           <Navbar />
           <Switch>
+            <Route path={"/"} component={Home} exact />
             <Route path={"/movies/:num"} component={Home} exact />
             <Route path={"/favourites"} component={Favourites} exact />
             <Route path={"/search/:queryString"} component={SearchPage} exact />

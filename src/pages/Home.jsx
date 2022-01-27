@@ -12,8 +12,9 @@ const Home = () => {
   const history = useHistory();
   const { lang } = useContext(languageContext);
 
-  let [pageNumber, setPageNumber] = useState(params.num);
-
+  let [pageNumber, setPageNumber] = useState(
+    params.num === undefined ? 1 : params.num
+  );
   useEffect(() => {
     dispatch(fetchMovies(pageNumber, lang));
     window.scrollTo(0, 0);
