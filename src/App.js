@@ -14,30 +14,18 @@ function App() {
   const [lang, setLang] = useState("en");
 
   return (
-    <Router>
+    <Router basename="/Movies-App">
       <languageContext.Provider value={{ lang, setLang }}>
         <div dir={lang === "en" ? "ltr" : "rtl"}>
           <Navbar />
           <Switch>
-            <Route path={"/Movies-App"} component={Home} exact />
-            <Route path={"/Movies-App/movies/:num"} component={Home} exact />
-            <Route
-              path={"/Movies-App/favourites"}
-              component={Favourites}
-              exact
-            />
-            <Route
-              path={"/Movies-App/search/:queryString"}
-              component={SearchPage}
-              exact
-            />
-            <Route path={"/Movies-App/login"} component={Login} exact />
-            <Route path={"/Movies-App/register"} component={Register} exact />
-            <Route
-              path={"/Movies-App/:id/movie_details"}
-              component={MovieDetails}
-              exact
-            />
+            <Route path={"/"} component={Home} exact />
+            <Route path={"/movies/:num"} component={Home} exact />
+            <Route path={"/favourites"} component={Favourites} exact />
+            <Route path={"/search/:queryString"} component={SearchPage} exact />
+            <Route path={"/login"} component={Login} exact />
+            <Route path={"/register"} component={Register} exact />
+            <Route path={"/:id/movie_details"} component={MovieDetails} exact />
           </Switch>
         </div>
       </languageContext.Provider>

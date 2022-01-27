@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
       <div className="container-fluid">
-        <Link className="navbar-brand text-danger" to={"/Movies-App/movies/1"}>
+        <Link className="navbar-brand text-danger" to={"/movies/1"}>
           {lang === "en" ? en.app_name : ar.app_name}
         </Link>
         <button
@@ -46,7 +46,7 @@ const Navbar = () => {
             <li className="nav-item">
               <Link
                 className="nav-link d-flex align-items-center"
-                to={"/Movies-App/favourites"}
+                to={"/favourites"}
               >
                 {lang === "en" ? en.fav : ar.fav}
                 <span className="badge bg-danger text-white mx-2">
@@ -55,12 +55,12 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={"/Movies-App/login"}>
+              <Link className="nav-link" to={"/login"}>
                 {lang === "en" ? en.login : ar.login}
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={"/Movies-App/register"}>
+              <Link className="nav-link" to={"/register"}>
                 {lang === "en" ? en.register : ar.register}
               </Link>
             </li>
@@ -69,9 +69,7 @@ const Navbar = () => {
                 initialValues={{
                   search: "",
                 }}
-                onSubmit={(values) =>
-                  history.push(`/Movies-App/search/${values.search}`)
-                }
+                onSubmit={(values) => history.push(`/search/${values.search}`)}
               >
                 {(formik) => (
                   <Form>

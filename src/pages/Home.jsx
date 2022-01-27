@@ -22,21 +22,21 @@ const Home = () => {
 
   const firstPage = () => {
     setPageNumber(1);
-    history.push("/Movies-App/movies/1");
+    history.push("/movies/1");
   };
 
   const prevPage = () => {
     if (pageNumber > 1) {
       pageNumber = parseInt(pageNumber) - 1;
       setPageNumber(pageNumber);
-      history.push(`/Movies-App/movies/${pageNumber}`);
+      history.push(`/movies/${pageNumber}`);
     }
   };
 
   const nextPage = () => {
     pageNumber = parseInt(pageNumber) + 1;
     setPageNumber(pageNumber);
-    history.push(`/Movies-App/movies/${pageNumber}`);
+    history.push(`/movies/${pageNumber}`);
   };
   return (
     <div className="container">

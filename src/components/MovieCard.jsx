@@ -29,7 +29,7 @@ const MovieCard = (props) => {
           )}
         </div>
         <div className="card-body">
-          <Link to={`/Movies-App/${props.movie.id}/movie_details`}>
+          <Link to={`/${props.movie.id}/movie_details`}>
             <p className="card-text h3">{props.movie.title}</p>
           </Link>
           <p className="card-text line-clamp">{props.movie.overview}</p>
