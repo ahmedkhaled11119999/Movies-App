@@ -69,7 +69,9 @@ const Navbar = () => {
                 initialValues={{
                   search: "",
                 }}
-                onSubmit={(values) => history.push(`/search/${values.search}`)}
+                onSubmit={(values) =>
+                  history.push(`/Movies-App/search/${values.search}`)
+                }
               >
                 {(formik) => (
                   <Form>
